@@ -1,15 +1,21 @@
 "use client"
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import dynamic from "next/dynamic"
+import { Routes, Route } from "react-router-dom"
 import Navigation from "./components/Navigation"
 import Home from "./pages/Home"
 import Skills from "./pages/Skills"
 import Projects from "./pages/Projects"
 import Contact from "./pages/Contact"
 
+const DynamicBrowserRouter = dynamic(
+  () => import("react-router-dom").then((mod) => mod.BrowserRouter),
+  { ssr: false }
+)
+
 export default function App() {
   return (
-    <Router>
+    <DynamicBrowserRouter>
       <div className="min-h-screen bg-gray-50">
         <Navigation />
         <Routes>
@@ -19,6 +25,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </div>
-    </Router>
+    </DynamicBrowserRouter>
   )
 }
+
