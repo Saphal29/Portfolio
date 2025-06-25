@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Github } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 interface Project {
   id: number
@@ -13,47 +14,45 @@ interface Project {
 }
 
 export default function Projects() {
+  const { t } = useTranslation()
   const projects: Project[] = [
     {
       id: 1,
-      title: "Ryde",
-      description:
-        "A Mobile Application That Connects Passengers With Drivers Using Their Personal Vehicles For Transportation. Features real-time location tracking, secure payment integration, and user-friendly interface for both passengers and drivers.",
+      title: t("projects.ryde.title"),
+      description: t("projects.ryde.description"),
       technologies: ["React Native", "Nativewind", "Node.js", "MySQL"],
       githubLink: "https://github.com/Saphal29/Ryde.git",
-      category: "Mobile",
+      category: t("projects.filter.mobile"),
     },
     {
       id: 2,
-      title: "Horizon",
-      description:
-        "An E-Commerce Website That Sells Printers To Customers With User-Friendly Interface. Features product catalog, shopping cart functionality, and responsive design for optimal user experience across all devices.",
+      title: t("projects.horizon.title"),
+      description: t("projects.horizon.description"),
       technologies: ["HTML", "CSS", "JavaScript"],
       githubLink: "https://github.com/Saphal29/Horizon.git",
-      category: "Web",
+      category: t("projects.filter.web"),
     },
     {
       id: 3,
-      title: "Kitab-Zone",
-      description:
-        "A Web-Based Library Management System Designed To Automate Book Tracking, Borrowing, Reserving, And Administrative Tasks For Colleges. Includes user authentication, book search, and administrative dashboard.",
+      title: t("projects.kitab_zone.title"),
+      description: t("projects.kitab_zone.description"),
       technologies: ["HTML", "CSS", "JavaScript", "Java", "JDBC", "MySQL"],
       githubLink: "https://github.com/Saphal29/Kitab-Zone.git",
-      category: "Full-Stack",
+      category: t("projects.filter.full_stack"),
     },
   ]
 
-  const [filter, setFilter] = useState("All")
-  const categories = ["All", "Web", "Mobile", "Full-Stack"]
+  const [filter, setFilter] = useState(t("projects.filter.all"))
+  const categories = [t("projects.filter.all"), t("projects.filter.web"), t("projects.filter.mobile"), t("projects.filter.full_stack")]
 
-  const filteredProjects = filter === "All" ? projects : projects.filter((project) => project.category === filter)
+  const filteredProjects = filter === t("projects.filter.all") ? projects : projects.filter((project) => project.category === filter)
 
   return (
     <div className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Featured Projects</h1>
-          <p className="text-lg text-gray-600 mb-8">A showcase of my recent work and personal projects</p>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">{t("projects.title")}</h1>
+          <p className="text-lg text-gray-600 mb-8">{t("projects.subtitle")}</p>
 
           {/* Filter Buttons */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -101,7 +100,7 @@ export default function Projects() {
                     className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors text-sm"
                   >
                     <Github size={16} />
-                    View Code
+                    {t("projects.view_code")}
                   </a>
                 </div>
               </div>
@@ -113,15 +112,15 @@ export default function Projects() {
         <div className="mt-16 grid md:grid-cols-3 gap-8">
           <div className="text-center p-6 bg-white rounded-lg shadow-sm">
             <h3 className="text-2xl font-bold text-blue-600 mb-2">3+</h3>
-            <p className="text-gray-600">Completed Projects</p>
+            <p className="text-gray-600">{t("projects.stats.completed_projects")}</p>
           </div>
           <div className="text-center p-6 bg-white rounded-lg shadow-sm">
             <h3 className="text-2xl font-bold text-green-600 mb-2">5+</h3>
-            <p className="text-gray-600">Technologies Used</p>
+            <p className="text-gray-600">{t("projects.stats.technologies_used")}</p>
           </div>
           <div className="text-center p-6 bg-white rounded-lg shadow-sm">
             <h3 className="text-2xl font-bold text-purple-600 mb-2">100%</h3>
-            <p className="text-gray-600">Open Source</p>
+            <p className="text-gray-600">{t("projects.stats.open_source")}</p>
           </div>
         </div>
       </div>

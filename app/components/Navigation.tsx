@@ -3,20 +3,26 @@
 import { useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { Menu, X } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
+  const { t, i18n } = useTranslation()
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Skills", path: "/skills" },
-    { name: "Projects", path: "/projects" },
-    { name: "Contact", path: "/contact" },
+    { name: "home", path: "/" },
+    { name: "skills", path: "/skills" },
+    { name: "projects", path: "/projects" },
+    { name: "contact", path: "/contact" },
   ]
 
   const isActive = (path: string) => {
     return location.pathname === path
+  }
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng)
   }
 
   return (
@@ -37,9 +43,35 @@ export default function Navigation() {
                   isActive(item.path) ? "text-blue-600 font-medium" : "text-gray-700 hover:text-blue-600"
                 }`}
               >
-                {item.name}
+                {t(`navigation.${item.name}`)}
               </Link>
             ))}
+            <div className="flex space-x-2">
+              <button
+                onClick={() => changeLanguage("en")}
+                className={`px-3 py-1 rounded-md text-sm ${
+                  i18n.language === "en" ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700"
+                }`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => changeLanguage("np")}
+                className={`px-3 py-1 rounded-md text-sm ${
+                  i18n.language === "np" ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700"
+                }`}
+              >
+                NP
+              </button>
+              <button
+                onClick={() => changeLanguage("fr")}
+                className={`px-3 py-1 rounded-md text-sm ${
+                  i18n.language === "fr" ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700"
+                }`}
+              >
+                FR
+              </button>
+            </div>
           </div>
 
           {/* Mobile Navigation Button */}
@@ -63,9 +95,35 @@ export default function Navigation() {
                     isActive(item.path) ? "text-blue-600 font-medium" : "text-gray-700 hover:text-blue-600"
                   }`}
                 >
-                  {item.name}
+                  {t(`navigation.${item.name}`)}
                 </Link>
               ))}
+              <div className="flex space-x-2 pt-2">
+                <button
+                  onClick={() => changeLanguage("en")}
+                  className={`px-3 py-1 rounded-md text-sm ${
+                    i18n.language === "en" ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700"
+                  }`}
+                >
+                  EN
+                </button>
+                <button
+                  onClick={() => changeLanguage("np")}
+                  className={`px-3 py-1 rounded-md text-sm ${
+                    i18n.language === "np" ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700"
+                  }`}
+                >
+                  NP
+                </button>
+                <button
+                  onClick={() => changeLanguage("fr")}
+                  className={`px-3 py-1 rounded-md text-sm ${
+                    i18n.language === "fr" ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700"
+                  }`}
+                >
+                  FR
+                </button>
+              </div>
             </div>
           </div>
         )}

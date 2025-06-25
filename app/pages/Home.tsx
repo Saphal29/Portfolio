@@ -2,8 +2,10 @@ import { Github, Linkedin, Mail, MapPin } from "lucide-react"
 import { Link } from "react-router-dom"
 import Image from "next/image"
 import Saphal from "@/app/assets/Saphal.jpg"
+import { useTranslation } from "react-i18next"
 
 export default function Home() {
+  const { t } = useTranslation()
   return (
     <div className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
@@ -18,11 +20,10 @@ export default function Home() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">Saphal Chudal</h1>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">{t("home.greeting")}</h1>
             <p className="text-xl sm:text-2xl text-gray-600 mb-6">Aspiring Frontend Developer</p>
             <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
-              Building impactful and user-friendly web applications with strong skills in HTML, CSS, JavaScript, and
-              React. Committed to continuous learning and contributing to innovative, high-quality solutions.
+              {t("home.description")}
             </p>
           </div>
 
@@ -42,13 +43,13 @@ export default function Home() {
               to="/projects"
               className="inline-flex items-center justify-center px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
             >
-              View My Projects
+              {t("home.button")}
             </Link>
             <Link
               to="/contact"
               className="inline-flex items-center justify-center px-8 py-3 bg-white text-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium"
             >
-              Get In Touch
+              {t("contact.title")}
             </Link>
           </div>
 
@@ -77,19 +78,19 @@ export default function Home() {
         {/* Quick Overview Section */}
         <div className="mt-16 grid md:grid-cols-3 gap-8">
           <div className="text-center p-6 bg-white rounded-lg shadow-sm">
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Education</h3>
-            <p className="text-gray-600">BSC. (Hons) Computing</p>
-            <p className="text-sm text-gray-500">London Metropolitan University</p>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">{t("skills.education")}</h3>
+            <p className="text-gray-600">{t("skills.education_degree")}</p>
+            <p className="text-sm text-gray-500">{t("skills.education_university")}</p>
           </div>
           <div className="text-center p-6 bg-white rounded-lg shadow-sm">
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Focus</h3>
-            <p className="text-gray-600">Frontend Development</p>
-            <p className="text-sm text-gray-500">React, JavaScript, CSS</p>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">{t("skills.focus")}</h3>
+            <p className="text-gray-600">{t("skills.focus_description")}</p>
+            <p className="text-sm text-gray-500">{t("skills.focus_tech")}</p>
           </div>
           <div className="text-center p-6 bg-white rounded-lg shadow-sm">
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Projects</h3>
-            <p className="text-gray-600">3+ Completed</p>
-            <p className="text-sm text-gray-500">Web & Mobile Apps</p>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">{t("skills.projects_title")}</h3>
+            <p className="text-gray-600">{t("skills.projects_count")}</p>
+            <p className="text-sm text-gray-500">{t("skills.projects_types")}</p>
           </div>
         </div>
       </div>
